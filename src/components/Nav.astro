@@ -1,0 +1,133 @@
+---
+---
+<nav id="main-nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Santi a GO! — inicio">
+      Santi a <span>GO!</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#section-camino">El Camino</a></li>
+      <li><a href="#section-funciones">Funciones</a></li>
+      <li><a href="#section-roadmap">Roadmap</a></li>
+      <li><a href="#section-equipo">Equipo</a></li>
+    </ul>
+    <a
+      href="https://app.youform.com/forms/9i6wfyan"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="nav-cta"
+    >
+      Acompáñanos
+    </a>
+  </div>
+</nav>
+
+<style>
+  #main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 18px 0;
+    transition: background 350ms ease, padding 350ms ease, backdrop-filter 350ms ease, box-shadow 350ms ease;
+  }
+  #main-nav.scrolled {
+    background: rgba(5, 15, 8, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 12px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffe100;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    margin-right: auto;
+    flex-shrink: 0;
+    transition: opacity 200ms ease;
+  }
+  .nav-logo span { color: #ffe100; }
+  .nav-logo:hover { opacity: 0.85; }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    transition: color 200ms ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ffe100;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms ease;
+  }
+  .nav-links a:hover { color: #ffe100; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: #ffe100;
+    color: #0f3d26;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255, 225, 0, 0.45);
+    background: #ffc800;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-cta { padding: 9px 18px; font-size: 13px; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+    function update() {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>

@@ -1,0 +1,203 @@
+---
+const members = [
+  {
+    initials: 'AG',
+    name: 'Albert Galindo Mortés',
+    role: 'UX/UI Designer · Multimedia Eng.',
+    bio: 'Diseñador de experiencias digitales con vocación por los videojuegos y la narrativa interactiva. Da vida a la interfaz y la experiencia de Santi a GO!',
+    gradient: 'linear-gradient(135deg, #1a5c35, #2d7a45)',
+  },
+  {
+    initials: 'MC',
+    name: 'Miguel Cuadros González',
+    role: 'Game Design · Artist 2D',
+    bio: 'Artista y diseñador de juegos especializado en personajes y mundos 2D. Creator de los Xacobitos y del universo visual de Santi a GO!',
+    gradient: 'linear-gradient(135deg, #0f3d26, #ffe100)',
+  },
+];
+---
+
+<section id="section-equipo" class="team-section">
+  <div class="team-inner">
+    <div class="team-header gs-reveal">
+      <h2 class="team-title">¿Quiénes Somos?</h2>
+      <p class="team-subtitle">Dos creativos apasionados del Camino y los videojuegos</p>
+    </div>
+
+    <div class="team-grid">
+      {members.map((m) => (
+        <article class="team-card">
+          <div class="member-avatar" style={`background: ${m.gradient};`} aria-hidden="true">
+            <span>{m.initials}</span>
+          </div>
+          <h3 class="member-name">{m.name}</h3>
+          <p class="member-role">{m.role}</p>
+          <p class="member-bio">{m.bio}</p>
+        </article>
+      ))}
+    </div>
+
+    <!-- Ludovía Lab -->
+    <div class="ludovia-wrap gs-reveal">
+      <div class="ludovia-divider" aria-hidden="true"></div>
+      <div class="ludovia-logo">
+        <div class="ludovia-circle" aria-hidden="true">
+          <span>L</span>
+        </div>
+        <div class="ludovia-text">
+          <span class="ludovia-name">Ludovía lab</span>
+          <span class="ludovia-tagline">Juegos que emocionan · Historias que conectan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    background: linear-gradient(160deg, #0f3d26 0%, #0a2516 100%);
+    padding: 100px 28px;
+  }
+  .team-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .team-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .team-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 50px);
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .team-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 60px;
+  }
+  .team-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+  }
+  .team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    border-color: rgba(255,225,0,0.25);
+  }
+  .member-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .member-avatar span {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .member-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .member-role {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffe100;
+    margin-bottom: 14px;
+    opacity: 0.9;
+  }
+  .member-bio {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+
+  /* Ludovía */
+  .ludovia-wrap { text-align: center; }
+  .ludovia-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,225,0,0.2), transparent);
+    margin-bottom: 36px;
+  }
+  .ludovia-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 60px;
+    padding: 14px 28px;
+    transition: border-color 250ms ease;
+  }
+  .ludovia-logo:hover { border-color: rgba(255,225,0,0.2); }
+  .ludovia-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,225,0,0.12);
+    border: 1px solid rgba(255,225,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ludovia-circle span {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: #ffe100;
+  }
+  .ludovia-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .ludovia-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .ludovia-tagline {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .team-section { padding: 72px 20px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .ludovia-logo { flex-direction: column; text-align: center; padding: 20px; }
+    .ludovia-text { text-align: center; }
+  }
+</style>

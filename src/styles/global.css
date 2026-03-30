@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --color-green-dark: #0f3d26;
+  --color-green-mid: #1a5c35;
+  --color-green-light: #2d7a45;
+  --color-bg-darker: #0a2516;
+  --color-bg-darkest: #071910;
+  --color-yellow: #ffe100;
+  --color-yellow-dark: #ffc800;
+  --color-footer-bg: #020d05;
+  --font-display: "Londrina Solid", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+
+/* ── CSS Variables ── */
+:root {
+  --green-dark: #0f3d26;
+  --green-mid: #1a5c35;
+  --green-light: #2d7a45;
+  --yellow: #ffe100;
+  --yellow-dark: #ffc800;
+  --bg-darker: #0a2516;
+  --bg-darkest: #071910;
+  --white-82: rgba(255, 255, 255, 0.82);
+  --font-display: "Londrina Solid", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--green-dark);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: var(--font-body);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #020d05; }
+::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+/* ── Hexagonal pattern ── */
+.hex-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.035'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.3h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Section separator ── */
+.section-sep {
+  height: 8px;
+  background-color: var(--yellow);
+  width: 100%;
+  display: block;
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--yellow);
+  color: #000;
+  padding: 8px 16px;
+  font-weight: 700;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+  font-family: var(--font-body);
+}
+.skip-link:focus { top: 0; }
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Cursor ── */
+#cursor-ring, #cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+@media (hover: none) {
+  #cursor-ring, #cursor-dot { display: none; }
+}
+
+/* ── Animations ── */
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(9px); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.anim-badge {
+  opacity: 0;
+  animation: fadeInDown 0.65s ease forwards 0ms;
+}
+.anim-title {
+  opacity: 0;
+  animation: fadeInUp 0.65s ease forwards 150ms;
+}
+.anim-subtitle {
+  opacity: 0;
+  animation: fadeInUp 0.65s ease forwards 300ms;
+}
+.anim-buttons {
+  opacity: 0;
+  animation: fadeInUp 0.65s ease forwards 450ms;
+}
+.anim-bounce {
+  animation: bounceHint 1.6s ease-in-out infinite;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  #cursor-ring, #cursor-dot { display: none; }
+}

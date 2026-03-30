@@ -1,0 +1,118 @@
+---
+---
+<section id="section-camino" class="about-section gs-reveal">
+  <div class="about-inner">
+    <!-- Text column -->
+    <div class="about-text">
+      <span class="about-label">¿Qué es Santi a GO?</span>
+      <h2 class="about-heading">El Camino como<br />nunca lo habías vivido</h2>
+      <p class="about-body">
+        <strong class="kw">Santi a GO!</strong> es una aplicación móvil que transforma la
+        experiencia del <strong class="kw">Camino de Santiago</strong> en una
+        <strong class="kw">aventura interactiva</strong>, emocional y motivadora. Recoge
+        criaturas míticas gallegas, completa misiones, lleva tu
+        <strong class="kw">diario de peregrino</strong> y comparte el viaje con una
+        comunidad de <strong class="kw">peregrinos</strong> de todo el mundo.
+      </p>
+      <p class="about-body">
+        Diseñada para peregrinos de todas las edades, <strong class="kw">Santi a GO!</strong>
+        combina la esencia espiritual del Camino con la emoción de la
+        <strong class="kw">gamificación</strong> y la narrativa interactiva.
+      </p>
+    </div>
+
+    <!-- Video column -->
+    <div class="about-video-wrap">
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/meFqZqZOsWk"
+          title="Santi a GO! — Video de presentación de la app"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-forms"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    background: linear-gradient(160deg, #0f3d26 0%, #1a5c35 60%, #0f3d26 100%);
+    padding: 100px 28px;
+  }
+  .about-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #ffe100;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+  .about-heading {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .about-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .kw {
+    color: #ffe100;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 225, 0, 0.4);
+  }
+  .about-video-wrap {
+    width: 100%;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 225, 0, 0.18);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  }
+  .video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    .about-inner { gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    .about-section { padding: 72px 20px; }
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

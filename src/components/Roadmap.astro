@@ -1,0 +1,244 @@
+---
+const nodes = [
+  { period: "Q2 '25", label: "Idea", desc: "Concepto inicial y validación de la propuesta.", done: true,  active: false },
+  { period: "Q3 '25", label: "Prototipo", desc: "Primer prototipo navegable y pruebas de usuario.", done: true,  active: false },
+  { period: "Q4 '25", label: "Planning", desc: "Planificación técnica y diseño del MVP.", done: false, active: true  },
+  { period: "2026",   label: "MVP",      desc: "Versión mínima viable con funciones core.", done: false, active: false },
+  { period: "Q1 '26", label: "Lanzamiento", desc: "Lanzamiento público en App Store y Google Play.", done: false, active: false },
+  { period: "Q2 '26", label: "Promoción", desc: "Campaña de marketing y partnerships del Camino.", done: false, active: false },
+  { period: "Q3 '26", label: "Expansión", desc: "Nuevas rutas, idiomas y funcionalidades avanzadas.", done: false, active: false },
+];
+---
+
+<section id="section-roadmap" class="roadmap-section">
+  <div class="roadmap-inner">
+    <div class="roadmap-header gs-reveal">
+      <h2 class="roadmap-title">Hoja de Ruta</h2>
+      <p class="roadmap-subtitle">De la idea al lanzamiento — nuestro viaje de desarrollo</p>
+    </div>
+
+    <!-- Desktop timeline -->
+    <div class="roadmap-track" role="list" aria-label="Hoja de ruta del proyecto">
+      <!-- Connector line -->
+      <div class="roadmap-line" aria-hidden="true">
+        <div class="roadmap-line-fill"></div>
+      </div>
+
+      <div class="roadmap-nodes-row">
+        {nodes.map((node, i) => (
+          <div
+            class={`roadmap-node ${node.done ? 'done' : ''} ${node.active ? 'active' : ''}`}
+            role="listitem"
+            aria-current={node.active ? 'step' : undefined}
+          >
+            {node.active && (
+              <div class="node-here-label">Estamos aquí 👇</div>
+            )}
+            <div class="node-circle" aria-hidden="true">
+              {node.done ? '✓' : node.active ? '◉' : String(i + 1)}
+            </div>
+            <div class="node-content">
+              <div class="node-period">{node.period}</div>
+              <div class="node-label">{node.label}</div>
+              <p class="node-desc">{node.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap-section {
+    background: #0a2516;
+    padding: 100px 28px;
+    overflow: hidden;
+  }
+  .roadmap-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .roadmap-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .roadmap-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 50px);
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .roadmap-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffe100;
+    opacity: 0.85;
+  }
+
+  /* Track */
+  .roadmap-track {
+    position: relative;
+  }
+  .roadmap-line {
+    position: absolute;
+    top: 78px;
+    left: calc(100% / 14);
+    right: calc(100% / 14);
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .roadmap-line-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2d7a45, #ffe100, #2d7a45);
+    border-radius: 2px;
+    transition: width 1.5s ease;
+  }
+
+  .roadmap-nodes-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .roadmap-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    position: relative;
+  }
+  .node-here-label {
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 225, 0, 0.15);
+    border: 1px solid rgba(255, 225, 0, 0.4);
+    color: #ffe100;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .node-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    transition: transform 250ms ease;
+    flex-shrink: 0;
+    background: #1a5c35;
+    border: 2px solid rgba(255, 225, 0, 0.25);
+    color: rgba(255,255,255,0.6);
+  }
+  .roadmap-node.done .node-circle {
+    background: rgba(255, 225, 0, 0.15);
+    border-color: #ffe100;
+    color: #ffe100;
+  }
+  .roadmap-node.active .node-circle {
+    background: #ffe100;
+    border-color: #ffe100;
+    color: #0f3d26;
+    box-shadow: 0 0 0 6px rgba(255, 225, 0, 0.2);
+    font-size: 20px;
+  }
+  .roadmap-node:hover .node-circle {
+    transform: scale(1.1);
+  }
+  .node-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .node-period {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 225, 0, 0.7);
+  }
+  .node-label {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: #fff;
+  }
+  .node-desc {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+    max-width: 120px;
+  }
+
+  /* Mobile — vertical layout */
+  @media (max-width: 1024px) {
+    .roadmap-section { padding: 72px 20px; }
+    .roadmap-nodes-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .roadmap-node {
+      flex-direction: row;
+      text-align: left;
+      gap: 20px;
+      padding: 20px 0;
+      border-left: 3px solid rgba(255,225,0,0.15);
+      padding-left: 24px;
+      margin-left: 26px;
+    }
+    .roadmap-node.done { border-left-color: rgba(255,225,0,0.5); }
+    .roadmap-node.active { border-left-color: #ffe100; }
+    .node-here-label {
+      position: relative;
+      top: unset;
+      left: unset;
+      transform: none;
+      align-self: flex-start;
+      margin-bottom: 4px;
+    }
+    .node-content { align-items: flex-start; }
+    .node-desc { max-width: 100%; }
+    .roadmap-line { display: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // Animate the connecting line when roadmap enters viewport
+    const fill = document.querySelector('.roadmap-line-fill');
+    if (!fill) return;
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            fill.style.width = '100%';
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    const track = document.querySelector('.roadmap-track');
+    if (track) observer.observe(track);
+  })();
+</script>

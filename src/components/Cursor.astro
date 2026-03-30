@@ -1,0 +1,91 @@
+---
+---
+<!-- Custom cursor — desktop only (hidden on touch/mobile via CSS) -->
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="cursor-dot" aria-hidden="true"></div>
+
+<style>
+  #cursor-ring {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ffe100;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    top: 0; left: 0;
+    transition: width 250ms ease, height 250ms ease, background 250ms ease, opacity 250ms ease;
+    opacity: 0;
+    will-change: transform;
+  }
+  #cursor-dot {
+    width: 5px;
+    height: 5px;
+    background: #ffe100;
+    border-radius: 50%;
+    top: 0; left: 0;
+    opacity: 0;
+    will-change: transform;
+  }
+  #cursor-ring.visible { opacity: 1; }
+  #cursor-dot.visible  { opacity: 1; }
+  #cursor-ring.hovered {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 225, 0, 0.12);
+    border-color: rgba(255, 225, 0, 0.8);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // Only on devices with a fine pointer (mouse)
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ring = document.getElementById('cursor-ring');
+    const dot  = document.getElementById('cursor-dot');
+    if (!ring || !dot) return;
+
+    let rx = 0, ry = 0; // ring lerped position
+    let mx = 0, my = 0; // actual mouse position
+    const LERP = 0.18;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      // Dot follows instantly
+      dot.style.transform = 'translate(' + (mx - 2.5) + 'px, ' + (my - 2.5) + 'px)';
+      dot.classList.add('visible');
+      ring.classList.add('visible');
+    });
+
+    document.addEventListener('mouseleave', function () {
+      ring.classList.remove('visible');
+      dot.classList.remove('visible');
+    });
+
+    // Hover state on interactive elements
+    const hoverTargets = 'a, button, [role="button"], .feature-card, .team-card, .phone-mockup, .roadmap-node';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target && (e.target).closest(hoverTargets)) {
+        ring.classList.add('hovered');
+      }
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target && (e.target).closest(hoverTargets)) {
+        ring.classList.remove('hovered');
+      }
+    });
+
+    // Lerp animation loop for ring
+    function tick() {
+      rx = lerp(rx, mx, LERP);
+      ry = lerp(ry, my, LERP);
+      const size = ring.classList.contains('hovered') ? 18 : 9;
+      ring.style.transform = 'translate(' + (rx - size) + 'px, ' + (ry - size) + 'px)';
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+</script>

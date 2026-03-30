@@ -1,0 +1,203 @@
+---
+---
+<section id="hero" class="hero-section">
+  <!-- Hex overlay -->
+  <div class="hero-hex hex-bg" aria-hidden="true"></div>
+  <!-- Radial glow accents -->
+  <div class="hero-glow-a" aria-hidden="true"></div>
+  <div class="hero-glow-b" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge anim-badge" role="doc-subtitle">
+      🐚 Aplicación móvil · Camino de Santiago
+    </div>
+
+    <h1 class="hero-title anim-title">
+      Santi a <span class="hero-go">GO!</span>
+    </h1>
+
+    <p class="hero-subtitle anim-subtitle">
+      La aventura interactiva que transforma tu peregrinación<br class="hidden md:block" />
+      en una experiencia épica, emocional y memorable.
+    </p>
+
+    <div class="hero-buttons anim-buttons">
+      <a
+        href="https://app.youform.com/forms/9i6wfyan"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Quiero acompañar a Santi
+      </a>
+      <a href="#section-camino" class="btn-secondary">
+        Descubrir la app
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-arrow anim-bounce">↓</div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 20% 45%, rgba(45, 122, 69, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 30%, rgba(26, 92, 53, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 85%, rgba(7, 25, 16, 0.9) 0%, transparent 60%),
+      #0f3d26;
+  }
+  .hero-hex {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .hero-glow-a {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(45, 122, 69, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow-b {
+    position: absolute;
+    bottom: 15%;
+    right: 5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 225, 0, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 900px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 225, 0, 0.12);
+    border: 1px solid rgba(255, 225, 0, 0.3);
+    color: #ffe100;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(80px, 11vw, 140px);
+    line-height: 0.92;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  .hero-go {
+    color: #ffe100;
+    display: inline-block;
+  }
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.65;
+    max-width: 620px;
+    margin-bottom: 40px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: #ffe100;
+    color: #0f3d26;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 34px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 225, 0, 0.45);
+    background: #ffc800;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 34px;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+    white-space: nowrap;
+  }
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.55;
+    z-index: 1;
+  }
+  .scroll-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .scroll-arrow {
+    font-size: 18px;
+    color: rgba(255, 225, 0, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: clamp(60px, 18vw, 100px);
+    }
+    .hero-subtitle { font-size: 16px; }
+    .btn-primary, .btn-secondary { font-size: 15px; padding: 14px 26px; }
+  }
+</style>

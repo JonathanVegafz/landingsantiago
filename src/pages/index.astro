@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Features from '../components/Features.astro';
+import Spotlight from '../components/Spotlight.astro';
+import Roadmap from '../components/Roadmap.astro';
+import Team from '../components/Team.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import Particles from '../components/Particles.astro';
+---
+
+<Layout>
+  <Cursor />
+  <Particles />
+  <Nav />
+
+  <main id="main-content" role="main">
+    <Hero />
+
+    <div class="section-sep" role="presentation"></div>
+    <About />
+
+    <div class="section-sep" role="presentation"></div>
+    <Features />
+
+    <div class="section-sep" role="presentation"></div>
+    <Spotlight />
+
+    <div class="section-sep" role="presentation"></div>
+    <Roadmap />
+
+    <div class="section-sep" role="presentation"></div>
+    <Team />
+
+    <div class="section-sep" role="presentation"></div>
+    <CTA />
+  </main>
+
+  <div class="section-sep" role="presentation"></div>
+  <Footer />
+</Layout>
+
+<!-- ───────────────────────────────────────────────────────── -->
+<!--  GSAP ScrollTrigger Animations                           -->
+<!-- ───────────────────────────────────────────────────────── -->
+<script is:inline>
+(function initAnimations() {
+  // Wait until GSAP CDN scripts have executed
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    window.addEventListener('load', initAnimations, { once: true });
+    return;
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // For reduced motion: just make everything visible without animation
+    document.querySelectorAll('.gs-reveal, .feature-card, .team-card, .spotlight-text, .spotlight-mockup, .roadmap-node').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Generic section reveals ──────────────────────────────
+  gsap.utils.toArray('.gs-reveal').forEach(function (el) {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 32 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.75,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      }
+    );
+  });
+
+  // ── Feature cards stagger ────────────────────────────────
+  const cards = gsap.utils.toArray('.feature-card');
+  if (cards.length) {
+    gsap.set(cards, { opacity: 0, y: 40 });
+    gsap.to(cards, {
+      opacity: 1, y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: '.features-grid',
+        start: 'top 85%',
+        once: true,
+      },
+    });
+  }
+
+  // ── Spotlight rows — slide from sides ───────────────────
+  document.querySelectorAll('.spotlight-row').forEach(function (row) {
+    var reversed = row.classList.contains('reversed');
+    var text    = row.querySelector('.spotlight-text');
+    var mockup  = row.querySelector('.spotlight-mockup');
+    if (text) {
+      gsap.fromTo(
+        text,
+        { opacity: 0, x: reversed ? 40 : -40 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: row, start: 'top 82%', once: true },
+        }
+      );
+    }
+    if (mockup) {
+      gsap.fromTo(
+        mockup,
+        { opacity: 0, x: reversed ? -40 : 40 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: 'power2.out', delay: 0.12,
+          scrollTrigger: { trigger: row, start: 'top 82%', once: true },
+        }
+      );
+    }
+  });
+
+  // ── Mockup parallax ─────────────────────────────────────
+  gsap.utils.toArray('.phone-mockup').forEach(function (phone) {
+    gsap.to(phone, {
+      y: -20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: phone,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.2,
+      },
+    });
+  });
+
+  // ── Roadmap nodes — stagger left to right ───────────────
+  var nodes = gsap.utils.toArray('.roadmap-node');
+  if (nodes.length) {
+    gsap.set(nodes, { opacity: 0, scale: 0.8 });
+    gsap.to(nodes, {
+      opacity: 1, scale: 1,
+      duration: 0.5,
+      ease: 'back.out(1.5)',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.roadmap-track',
+        start: 'top 80%',
+        once: true,
+      },
+    });
+  }
+
+  // ── Team cards ──────────────────────────────────────────
+  var teamCards = gsap.utils.toArray('.team-card');
+  if (teamCards.length) {
+    gsap.set(teamCards, { opacity: 0, scale: 0.9 });
+    gsap.to(teamCards, {
+      opacity: 1, scale: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: '.team-grid',
+        start: 'top 85%',
+        once: true,
+      },
+    });
+  }
+
+  // ── CTA content ─────────────────────────────────────────
+  var ctaContent = document.querySelector('.cta-content');
+  if (ctaContent) {
+    gsap.fromTo(
+      ctaContent,
+      { opacity: 0, y: 36 },
+      {
+        opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
+        scrollTrigger: { trigger: ctaContent, start: 'top 82%', once: true },
+      }
+    );
+  }
+
+  // ── Progress bar fills (in phone mockups) ───────────────
+  document.querySelectorAll('.progress-bar-fill[data-fill]').forEach(function (bar) {
+    var fill = bar.getAttribute('data-fill') || '0%';
+    gsap.fromTo(
+      bar,
+      { width: '0%' },
+      {
+        width: fill,
+        duration: 1.3,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: bar, start: 'top 92%', once: true },
+      }
+    );
+  });
+})();
+</script>

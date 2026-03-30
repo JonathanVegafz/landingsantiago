@@ -1,0 +1,96 @@
+---
+---
+<canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #particles-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const COUNT = REDUCED ? 45 : 90;
+
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width  = W;
+    canvas.height = H;
+
+    function resize() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width  = W;
+      canvas.height = H;
+    }
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Build particles
+    const particles = [];
+    for (let i = 0; i < COUNT; i++) {
+      const isGolden = Math.random() < 0.3;
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: 0.5 + Math.random() * 2.0,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: -(0.12 + Math.random() * 0.35), // drift upward
+        alpha: 0.3 + Math.random() * 0.7,
+        golden: isGolden,
+      });
+    }
+
+    function drawParticle(p) {
+      const baseAlpha = p.golden ? p.alpha : p.alpha * 0.5;
+      const color = p.golden
+        ? `rgba(255, 225, 0, ${baseAlpha})`
+        : `rgba(255, 255, 255, ${baseAlpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    let raf;
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        // Reset when out of viewport
+        if (p.y < -5) {
+          p.y = H + 5;
+          p.x = Math.random() * W;
+        }
+        if (p.x < -5) p.x = W + 5;
+        if (p.x > W + 5) p.x = -5;
+        drawParticle(p);
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    loop();
+
+    // Pause when tab is hidden to save resources
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+      } else {
+        loop();
+      }
+    });
+  })();
+</script>

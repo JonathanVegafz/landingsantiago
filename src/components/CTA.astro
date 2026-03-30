@@ -1,0 +1,239 @@
+---
+---
+<section class="cta-section">
+  <!-- Hex overlay -->
+  <div class="cta-hex hex-bg" aria-hidden="true"></div>
+  <!-- Yellow radial glow -->
+  <div class="cta-glow" aria-hidden="true"></div>
+
+  <div class="cta-content">
+    <h2 class="cta-title">
+      Acompáñanos en<br />
+      <span class="cta-highlight">la aventura</span>
+    </h2>
+    <p class="cta-body">
+      Sé parte de la comunidad que está dando vida a Santi a GO!<br />
+      Regístrate y recibe novedades del lanzamiento.
+    </p>
+    <a
+      href="https://app.youform.com/forms/9i6wfyan"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-btn"
+    >
+      ¡Quiero ser parte! 🐚
+    </a>
+  </div>
+
+  <!-- Contact divider -->
+  <div class="contact-section">
+    <div class="contact-divider" aria-hidden="true"></div>
+    <div class="contact-inner">
+      <h3 class="contact-title">Contacto</h3>
+      <div class="contact-grid">
+        <!-- Email -->
+        <a
+          href="mailto:santiagoappoficial@gmail.com"
+          class="contact-item"
+          aria-label="Enviar correo a santiagoappoficial@gmail.com"
+        >
+          <div class="contact-icon">✉</div>
+          <span>santiagoappoficial@gmail.com</span>
+        </a>
+        <!-- Phone -->
+        <a
+          href="tel:+34621251977"
+          class="contact-item"
+          aria-label="Llamar al +34 621 25 19 77"
+        >
+          <div class="contact-icon">📞</div>
+          <span>+34 621 25 19 77</span>
+        </a>
+      </div>
+
+      <!-- Social links -->
+      <div class="social-row" role="list" aria-label="Redes sociales">
+        <a
+          href="https://www.instagram.com/santi.a.go.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-btn"
+          aria-label="Síguenos en Instagram (@santi.a.go.app)"
+          role="listitem"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+          </svg>
+          <span>@santi.a.go.app</span>
+        </a>
+        <a
+          href="https://www.youtube.com/@santiagoappoficial"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-btn"
+          aria-label="Suscríbete en YouTube (@santiagoappoficial)"
+          role="listitem"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="currentColor" stroke-width="2"/>
+            <polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="currentColor"/>
+          </svg>
+          <span>@santiagoappoficial</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(255, 225, 0, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #0a2516 0%, #0f3d26 50%, #0a2516 100%);
+    padding: 110px 28px 80px;
+  }
+  .cta-hex {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .cta-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 225, 0, 0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 740px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .cta-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .cta-highlight {
+    color: #ffe100;
+  }
+  .cta-body {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #ffe100;
+    color: #0f3d26;
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 18px;
+    padding: 20px 52px;
+    border-radius: 60px;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    box-shadow: 0 8px 30px rgba(255, 225, 0, 0.3);
+  }
+  .cta-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(255, 225, 0, 0.5);
+    background: #ffc800;
+  }
+
+  /* Contact */
+  .contact-section {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .contact-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,225,0,0.25), transparent);
+    margin-bottom: 48px;
+  }
+  .contact-inner { text-align: center; }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .contact-grid {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 200ms ease;
+  }
+  .contact-item:hover { color: #ffe100; }
+  .contact-icon {
+    font-size: 18px;
+    opacity: 0.8;
+  }
+  .social-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 200ms ease, color 200ms ease, transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .social-btn:hover {
+    background: #ffe100;
+    color: #0f3d26;
+    border-color: #ffe100;
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(255,225,0,0.3);
+  }
+
+  @media (max-width: 640px) {
+    .cta-section { padding: 80px 20px 64px; }
+    .cta-body { font-size: 16px; }
+    .cta-btn { font-size: 16px; padding: 16px 36px; }
+    .contact-grid { flex-direction: column; align-items: center; }
+    .social-row { flex-direction: column; align-items: center; }
+  }
+</style>

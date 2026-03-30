@@ -1,0 +1,50 @@
+---
+---
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <a href="/" class="footer-logo" aria-label="Santi a GO! — inicio">
+      Santi a <span>GO!</span>
+    </a>
+    <p class="footer-copy">
+      © 2025 <strong>Ludovía Lab</strong> · Todos los derechos reservados
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #020d05;
+    border-top: 8px solid rgba(255, 225, 0, 0.08);
+    padding: 32px 28px;
+  }
+  .footer-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffe100;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 200ms ease;
+  }
+  .footer-logo:hover { opacity: 1; }
+  .footer-logo span { color: #ffe100; }
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .footer-copy strong { color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 480px) {
+    .footer-inner { justify-content: center; text-align: center; }
+  }
+</style>

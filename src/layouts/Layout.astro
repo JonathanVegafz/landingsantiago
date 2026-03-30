@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Santi a GO! — La Aventura del Camino de Santiago",
+  description = "Transforma tu peregrinación en una aventura interactiva. La app móvil que gamifica el Camino de Santiago.",
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@400;900&family=Nunito:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP CDN — Fragment set:html bypasses Astro bundling; loads as blocking scripts -->
+    <Fragment set:html={`
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"><\/script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"><\/script>
+    `} />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>
